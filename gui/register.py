@@ -9,6 +9,7 @@ registration = customtkinter.CTk()
 registration.geometry(f'{460}x{645}')
 registration.resizable(False, False)
 registration.title('Registration Window')
+registration.iconbitmap(__file__ + r'/../icon.ico')
 
 mainframe = customtkinter.CTkFrame(master=registration, width=440, height=625, corner_radius=14,fg_color='#5ba3b3',border_width=5,border_color='#0c6b83')
 mainframe.place(x=10,y=10)
@@ -40,10 +41,10 @@ def getinputentry():
     connect = sqlite3.connect('myweather.db')
     cursor = connect.cursor()
 
-    last_get  = last_name_entry.get()
-    city_get =city_entry.get()
-    country_get = country_entry.get()
-    name_get = name_entry.get()
+    last_get  = last_name_entry.get().replace(" ", "")
+    city_get =city_entry.get().replace(" ", "")
+    country_get = country_entry.get().replace(" ", "")
+    name_get = name_entry.get().strip()
 
     cursor.execute('CREATE TABLE IF NOT EXISTS account (name text, last_name text, country text, city text)')
 
@@ -189,4 +190,4 @@ registration.mainloop()
 
 # if __name__ == "__main__":
 #     app = DragDropWindow()
-#     app.mainloop()
+    #@app.mainloop()

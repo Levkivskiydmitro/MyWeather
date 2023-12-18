@@ -9,8 +9,11 @@ account.geometry(f'{460}x{645}')
 account.resizable(0,0)
 account.title('Authorization Window')
 
+account.iconbitmap(__file__ + r'/../icon.ico')
+
 connect = sqlite3.connect('myweather.db')
 cursor = connect.cursor()
+# cursor.execute('CREATE TABLE IF NOT EXISTS registration (reg TEXT)')
 
 cursor.execute('SELECT city FROM account ORDER BY rowid DESC LIMIT 1')
 last_city = cursor.fetchone()
@@ -56,6 +59,7 @@ last_name_select = customtkinter.CTkLabel(master=mainframe, text=f"{last_last_na
 last_name_select.place(x=119, y=455)
 
 def nextfile():
+
     account.destroy()
     path_file = __file__+  r'/..\\app.py'
     os.system(f'python {path_file}')
